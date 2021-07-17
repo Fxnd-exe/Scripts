@@ -70,7 +70,7 @@ end)
 
 
 u:Button("Discord Server",function()
-    local credit = "Discord Server"
+    local credit = "https://discord.gg/QM7bYQshSg"
     setclipboard(credit)
     end)
 
@@ -121,10 +121,7 @@ end
 if AutoGems == true then
     for i,v in pairs(workspace:GetChildren()) do
         if v.Name == "Gems" and v.ClassName == "MeshPart" then
-            v.CFrame = root.CFrame
-            if v.CFrame ~= root.CFrame then
                 root.CFrame = v.CFrame
-                end
             end
     end
     end
