@@ -1,0 +1,131 @@
+local library = loadstring(game:HttpGet(('https://raw.githubusercontent.com/AikaV3rm/UiLib/master/Lib.lua')))()
+local w = library:CreateWindow("Space Simulator 2")
+local f = w:CreateFolder("Autofarms & More")
+local e = w:CreateFolder("Extra's")
+local u = w:CreateFolder("Credits")
+--local world = "Spawn"
+local root = game:GetService("Players").LocalPlayer.Character.HumanoidRootPart
+
+
+--Toggle
+f:Toggle("Auto Kill All",function(bool)
+    shared.toggle = bool
+    AutoKillAll = bool
+end)
+
+    f:Toggle("Auto Rebirth",function(bool)
+    shared.toggle = bool
+    AutoRebirth = bool
+end)
+
+f:Toggle("Auto Upgrade",function(bool)
+    shared.toggle = bool
+    AutoUpgrade = bool
+end)
+
+f:Toggle("Auto Hatch",function(bool)
+    shared.toggle = bool
+    AutoHatch = bool
+end)
+
+f:Toggle("Auto Gems",function(bool)
+    shared.toggle = bool
+    AutoGems = bool
+end)
+
+f:Button("Admin GUI",function()
+game:GetService("Players").LocalPlayer.PlayerGui.KickAndBanGUI.Enabled = true
+end)
+
+f:Button("Unlock All Tools",function()
+    for i,v in pairs(game:GetService("Players").LocalPlayer.ToolSave:GetChildren()) do
+        v.Value = true
+        end
+end)
+
+f:Button("Unlock All Doors",function()
+    for i,v in pairs(game:GetService("Workspace").RankDoors:GetChildren()) do
+        v:Destroy()
+    end
+    
+    for i,v in pairs(game:GetService("Workspace").CoinDoors:GetChildren()) do
+        v:Destroy()
+    end
+end)
+
+e:Toggle("AntiAfk",function(bool)
+    shared.toggle = bool
+    AntiAfk = bool
+end)
+
+e:Button("Rejoin",function()
+    local gameId = game.PlaceId
+    local ts = game:GetService("TeleportService")
+    local pLr = game.Players.LocalPlayer
+    ts:Teleport(gameId, pLr)
+end)
+--f:Dropdown("Select Egg",{"EGG TIER 1","EGG TIER 2 (Robux)","EGG TIER 3","EGG TIER 4","EGG TIER 5","EGG TIER 6","EGG TIER 7","EGG TIER 8","EGG TIER 9","EGG TIER 10","EGG TIER 11","EGG TIER 12","EGG TIER 13","EGG TIER 14","EGG TIER 15","EGG TIER 16","EGG TIER 17","EGG TIER 18","EGG TIER 19","EGG TIER 20"},true,function(Select)
+   -- SelectingEgg = Select
+--end)
+
+
+u:Button("Discord Server",function()
+    local credit = "Discord Server"
+    setclipboard(credit)
+    end)
+
+while wait(0) do
+    if AutoKillAll == true then
+     while wait() do
+for i,v in pairs(workspace:GetDescendants()) do
+    if v.Parent.Name ~= game.Players.LocalPlayer.Name then
+    if v.ClassName == "Humanoid" then
+        local A_1 = v.Parent
+local A_2 = 100000000
+local Event = game:GetService("ReplicatedStorage").EnemyHitEvent
+Event:FireServer(A_1, A_2)
+        end
+end
+end
+end
+end
+    if AutoRebirth == true then
+workspace.RebirthOptions.RebirthScript.Rebirth:FireServer()
+    end
+    
+    if AntiAfk == true then
+        local bb=game:service'VirtualUser'
+        bb:CaptureController()
+        bb:ClickButton2(Vector2.new())
+    end
+    
+    if AutoUpgrade == true then
+game:GetService("ReplicatedStorage").UpgradeShopEvents.Upgrade1:FireServer()
+game:GetService("ReplicatedStorage").UpgradeShopEvents.Upgrade2:FireServer()
+game:GetService("ReplicatedStorage").UpgradeShopEvents.Upgrade3:FireServer()
+game:GetService("ReplicatedStorage").UpgradeShopEvents.Upgrade4:FireServer()
+game:GetService("ReplicatedStorage").UpgradeShopEvents.Upgrade5:FireServer()
+game:GetService("ReplicatedStorage").UpgradeShopEvents.Upgrade6:FireServer()
+end
+
+if AutoHatch == true then
+
+local args = {
+    [1] = "Single"
+}
+
+game:GetService("Players").LocalPlayer.PlayerGui:FindFirstChild("E-R-T").MainFrame.RemoteEvent:FireServer(unpack(args))
+
+end
+
+if AutoGems == true then
+    for i,v in pairs(workspace:GetChildren()) do
+        if v.Name == "Gems" and v.ClassName == "MeshPart" then
+            v.CFrame = root.CFrame
+            if v.CFrame ~= root.CFrame then
+                root.CFrame = v.CFrame
+                end
+            end
+    end
+    end
+end
